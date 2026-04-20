@@ -11,38 +11,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100vh; overflow: hidden; background: #F5F1EB; color: #2C2A2B; font-family: 'Inter', system-ui, sans-serif; }
+  html, body { min-height: 100vh; background: #F5F1EB; color: #2C2A2B; font-family: 'Inter', system-ui, sans-serif; }
+  body { display: flex; flex-direction: column; }
+
   .bar {
-    height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    height: 56px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
     padding: 0 24px; background: #FBF7F2; border-bottom: 1px solid #E3DBCF;
-    position: relative; z-index: 2;
+    position: sticky; top: 0; z-index: 10;
   }
   .bar a {
     color: #6B6568; text-decoration: none; font-size: 14px; font-weight: 500;
     display: inline-flex; align-items: center; gap: 8px;
     padding: 6px 12px; border-radius: 8px; transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
   }
   .bar a:hover { background: #EFEAE2; color: #2C2A2B; }
   .bar .title {
     font-family: 'Fraunces', Georgia, serif; font-size: 15px; color: #2C2A2B;
     flex: 1; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
-  .viewer {
-    width: 100%; height: calc(100vh - 56px);
-    background: #E3DBCF; display: block;
+
+  .stage {
+    flex: 1; padding: 32px 24px 60px; display: flex; justify-content: center;
   }
-  .fallback {
-    padding: 60px 24px; text-align: center; max-width: 480px; margin: 0 auto;
+  .poster-frame {
+    max-width: 1400px; width: 100%;
+    background: #FFFFFF; border: 1px solid #E3DBCF; border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(40, 35, 40, 0.08), 0 4px 12px rgba(40, 35, 40, 0.04);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
   }
-  .fallback h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.5rem; margin-bottom: 12px; }
-  .fallback p { color: #6B6568; margin-bottom: 24px; line-height: 1.6; }
-  .fallback a {
-    display: inline-block; padding: 12px 24px; border-radius: 999px;
-    background: #2C2A2B; color: #FBF7F2; text-decoration: none; font-weight: 500;
+  .poster-frame:hover { box-shadow: 0 24px 60px rgba(40, 35, 40, 0.12), 0 6px 16px rgba(40, 35, 40, 0.06); }
+
+  .poster-img {
+    display: block; width: 100%; height: auto;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
   }
+  .poster-img.zoomed {
+    cursor: zoom-out;
+    max-width: none; width: auto;
+  }
+
+  .caption {
+    padding: 24px 28px; border-top: 1px solid #E3DBCF;
+    font-size: 13.5px; color: #6B6568; line-height: 1.65;
+  }
+  .caption strong { color: #2C2A2B; font-weight: 600; }
+  .caption .kicker {
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #8F88A8; margin-bottom: 8px;
+  }
+
   @media (max-width: 640px) {
     .bar .title { display: none; }
     .bar { padding: 0 12px; }
+    .stage { padding: 16px 12px 40px; }
+    .caption { padding: 20px; }
   }
 </style>
 </head>
@@ -60,13 +87,35 @@
   </a>
 </div>
 
-<object class="viewer" data="naspa-poster.pdf" type="application/pdf">
-  <div class="fallback">
-    <h2>Can't show the poster inline</h2>
-    <p>Your browser doesn't support inline PDF viewing. You can download the poster using the button below.</p>
-    <a href="naspa-poster.pdf" download="Ke_Shi_NASPA_2025_Poster.pdf">Download the poster</a>
+<div class="stage">
+  <div class="poster-frame">
+    <img id="poster" class="poster-img" src="naspa-poster.jpg"
+         alt="NASPA 2025 poster: Identifying Student Profiles Through Time Allocation — Latent Profile Analysis and Multinomial Logistic Regression on National Survey of Student Engagement data."
+         loading="eager" decoding="async" />
+    <div class="caption">
+      <div class="kicker">2025 NASPA International Symposium · UofT Student Life</div>
+      <strong>Identifying Student Profiles Through Time Allocation: A Latent Profile Analysis Approach</strong> ·
+      Clarissa Lau &amp; Ke Shi. Used NSSE survey data (~6,000 responses) to identify three student time-allocation
+      profiles — Balanced, Academic, and Worker — and tested predictors of profile membership via multinomial
+      logistic regression. Click the poster to zoom; use the Download button above for the full-resolution PDF.
+    </div>
   </div>
-</object>
+</div>
+
+<script>
+  // Click to toggle zoom between fit-to-width and native resolution
+  var img = document.getElementById('poster');
+  img.addEventListener('click', function () {
+    img.classList.toggle('zoomed');
+    if (img.classList.contains('zoomed')) {
+      // Try to center the click point after zoom
+      setTimeout(function () {
+        var rect = img.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 60, behavior: 'smooth' });
+      }, 50);
+    }
+  });
+</script>
 
 </body>
 </html>
