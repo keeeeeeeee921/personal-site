@@ -381,6 +381,34 @@ html[data-theme="dark"] .blob.b3 { opacity: 0.20; }
 }
 
 /* ---------- Skills ---------- */
+.core-stack {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 14px;
+  padding: 22px 28px; margin-bottom: 36px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-strong), color-mix(in srgb, var(--lavender) 70%, var(--pink) 30%));
+  box-shadow: var(--shadow);
+}
+.core-stack .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75); padding-right: 8px;
+  border-right: 1px solid rgba(255,255,255,0.25);
+  margin-right: 6px;
+}
+.core-stack .chip {
+  padding: 8px 16px; border-radius: 999px;
+  font-size: 14px; font-weight: 500; color: #FBF7F2;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease);
+}
+.core-stack .chip:hover { transform: translateY(-2px); background: rgba(255,255,255,0.24); }
+@media (max-width: 640px) {
+  .core-stack { padding: 18px 18px; gap: 10px; }
+  .core-stack .label { width: 100%; border-right: none; padding-right: 0; margin-right: 0; }
+  .core-stack .chip { font-size: 13px; padding: 6px 12px; }
+}
+
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
 .skill-group {
   padding: 28px; border-radius: var(--radius);
@@ -532,7 +560,7 @@ footer .mono { letter-spacing: 0.06em; }
         </a>
       </div>
       <div class="hero-meta">
-        <span><span class="dot"></span>Sales Analyst @ ZURU Edge</span>
+        <span><span class="dot"></span>Business Analyst @ ZURU Edge</span>
         <span>MS Operations Research · Columbia</span>
         <span>Based in the United States</span>
         <span>English · Mandarin</span>
@@ -602,7 +630,7 @@ footer .mono { letter-spacing: 0.06em; }
       <!-- Current roles -->
       <div class="exp reveal">
         <div class="exp-head">
-          <h3>Sales Analyst</h3>
+          <h3>Business Analyst</h3>
           <span class="at">·</span>
           <span class="company">ZURU Edge</span>
         </div>
@@ -713,8 +741,8 @@ footer .mono { letter-spacing: 0.06em; }
     <div class="projects">
 
       <div class="project reveal">
-        <div class="project-kicker">A/B Test · Product Analytics</div>
-        <h3>Landing-Page Signup Experiment — Amazon (Course Project)</h3>
+        <div class="project-kicker">A/B Test · Product Analytics · Course Project</div>
+        <h3>Landing-Page Signup Experiment</h3>
         <div class="metric">+27.1%</div>
         <div class="metric-label">Relative lift on signup completion</div>
         <p style="margin-top: 18px;">
@@ -730,10 +758,10 @@ footer .mono { letter-spacing: 0.06em; }
       </div>
 
       <div class="project reveal">
-        <div class="project-kicker">Funnel · KPI Design</div>
-        <h3>Driver Onboarding Funnel — Uber (Course Project)</h3>
-        <div class="metric">11.22%</div>
-        <div class="metric-label">Overall signup-to-first-trip conversion</div>
+        <div class="project-kicker">Funnel · KPI Design · Course Project</div>
+        <h3>Driver Onboarding Funnel — Uber</h3>
+        <div class="metric">S2FT-14d</div>
+        <div class="metric-label">Core onboarding KPI proposed</div>
         <p style="margin-top: 18px;">
           Mapped the full signup-to-first-trip funnel in SQL, computing step-level conversion and
           time-to-completion across channel, platform, and city segments. Identified the vehicle-added
@@ -764,11 +792,11 @@ footer .mono { letter-spacing: 0.06em; }
       <div class="project reveal">
         <div class="project-kicker">Research · Conference Poster</div>
         <h3>Student Time-Allocation Profiles — NASPA 2025</h3>
-        <div class="metric">~6,000</div>
-        <div class="metric-label">NSSE survey responses analyzed</div>
+        <div class="metric">3 profiles</div>
+        <div class="metric-label">Student archetypes identified via LPA</div>
         <p style="margin-top: 18px;">
-          Applied <b style="color: var(--text);">Latent Profile Analysis</b> to identify three distinct
-          student profiles (Balanced · Academic · Worker), then used <b style="color: var(--text);">multinomial
+          Applied <b style="color: var(--text);">Latent Profile Analysis</b> to identify student archetypes
+          (Balanced · Academic · Worker), then used <b style="color: var(--text);">multinomial
           logistic regression</b> to test how citizenship, sense of belonging, and demographics predict
           profile membership. Co-authored with Clarissa Lau (UofT Student Life); presented at the 2025
           NASPA International Symposium.
@@ -792,6 +820,17 @@ footer .mono { letter-spacing: 0.06em; }
   <div class="container">
     <div class="eyebrow reveal">04 · Toolkit</div>
     <h2 class="reveal">Skills &amp; <span style="font-style:italic; color: var(--accent-strong); font-weight:300;">tools</span>.</h2>
+
+    <div class="core-stack reveal">
+      <span class="label">Core stack</span>
+      <span class="chip">Python</span>
+      <span class="chip">SQL</span>
+      <span class="chip">A/B Testing</span>
+      <span class="chip">Causal Inference</span>
+      <span class="chip">Experimentation</span>
+      <span class="chip">Tableau</span>
+    </div>
+
     <div class="skills-grid">
 
       <div class="skill-group reveal">
@@ -818,7 +857,7 @@ footer .mono { letter-spacing: 0.06em; }
       <div class="skill-group reveal">
         <h3>Analytics &amp; Experimentation</h3>
         <div class="skill-tags">
-          <span>A/B Testing</span><span>Funnel Analysis</span><span>Causal Inference</span><span>KPI Design</span><span>Reporting Automation</span>
+          <span>A/B Testing</span><span>Experimentation</span><span>Funnel Analysis</span><span>Causal Inference</span><span>KPI Design</span><span>Reporting Automation</span>
         </div>
       </div>
 
@@ -839,7 +878,7 @@ footer .mono { letter-spacing: 0.06em; }
       <div class="skill-group reveal">
         <h3>Machine Learning</h3>
         <div class="skill-tags">
-          <span>Clustering</span><span>Random Forest</span><span>PCA</span><span>Isolation Forest</span><span>Prophet</span><span>NLP (LSA)</span>
+          <span>Clustering</span><span>Random Forest</span><span>PCA</span><span>Isolation Forest</span><span>Prophet</span>
         </div>
       </div>
 
@@ -881,8 +920,9 @@ footer .mono { letter-spacing: 0.06em; }
     <div class="eyebrow" style="justify-content:center;">06 · Contact</div>
     <h2>Let's <span class="ital">talk</span>.</h2>
     <p class="lead">
-      I'm actively exploring <strong style="color:var(--text);">Data Analyst</strong> and
-      <strong style="color:var(--text);">Data Scientist</strong> roles. If you're hiring — or just want to
+      I'm actively exploring <strong style="color:var(--text);">Product Analytics</strong>,
+      <strong style="color:var(--text);">Growth</strong>, and
+      <strong style="color:var(--text);">Experimentation</strong> roles. If you're hiring — or just want to
       swap notes on analytics, experimentation, or OR — I'd love to hear from you.
     </p>
     <div class="contact-links">
@@ -906,7 +946,7 @@ footer .mono { letter-spacing: 0.06em; }
 <footer>
   <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
     <span class="mono">© 2026 · Ke (Kelsey) Shi</span>
-    <span class="mono">Designed &amp; built by Kelsey · New York → Rogers, AR</span>
+    <span class="mono">Designed &amp; built by Kelsey · Based in the United States</span>
   </div>
 </footer>
 
